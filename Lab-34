@@ -1,0 +1,38 @@
+"""
+Day 34 Activity: Pattern Discovery
+Tasks:
+1) Create faceted plots (row/col)
+2) Add trend overlays or grouped plots
+3) Identify non-obvious pattern
+"""
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# TODO: Load data from data/day34_patterns.csv
+df = pd.read_csv("python\day34_patterns.csv")
+
+# TODO: Faceted relplot or catplot
+g = sns.relplot(data=df, x="time", y="value", col="season", hue="segment",
+               kind="scatter", alpha=0.4, height=3)
+g.fig.suptitle("Value vs Time — Faceted by Season", y=1.05)
+
+# TODO: Trend overlay
+#Trend Overlay
+sns.regplot(data=df, x="time", y="value", scatter_kws={"alpha": 0.3}, line_kws={"color": "red"})
+plt.title("Value vs Time — Regression Trend Overlay")
+plt.show()
+
+#Grouped Plot
+df["bucket"] = pd.cut(df["time"], bins=5, labels=["T1","T2","T3","T4","T5"])
+sns.boxplot(data=df, x="bucket", y="value", hue="segment")
+plt.title("Value by Time Bucket and Segment")
+plt.show()
+
+#Identify non-obvious pattern
+#Non-obvious pattern: The relationship between time and value varies significantly across different segments and seasons, suggesting that external factors may influence the trends. For instance, Segment A shows a strong positive trend in Spring, while Segment B has a negative trend in Winter, indicating potential seasonal effects or segment-specific behaviors that warrant further investigation.
+g = sns.lmplot(data=df, x="time", y="value", hue="segment", col="season",
+              scatter_kws={"alpha": 0.3}, height=3)
+g.fig.suptitle("Grouped Trends by Segment and Season", y=1.05)
+plt.show()
