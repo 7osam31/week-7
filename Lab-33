@@ -1,0 +1,19 @@
+"""
+Day 33 Activity: Correlation Heatmaps
+Tasks:
+1) Compute correlation matrix
+2) Plot heatmap with annotations
+"""
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# TODO: Load data from data/day33_corr.csv
+df = pd.read_csv("python\day33_corr.csv")
+
+# TODO: Compute df.corr() and plot heatmap
+corr_matrix = df.corr()
+sns.heatmap(corr_matrix, annot=True, cmap="coolwarm",vmin=-1,vmax=1)
+plt.title("Correlation Heatmap")
+plt.show()
