@@ -1,0 +1,22 @@
+"""
+Day 32 Activity: Relationship Plots
+Tasks:
+1) Create scatterplot encoding >=3 variables
+2) Create relplot with facet
+"""
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# TODO: Load data from data/day32_relationships.csv
+df = pd.read_csv("python\day32_relationships.csv")
+
+# TODO: sns.scatterplot with hue/style
+sns.scatterplot(x="feature1",y="outcome",hue="segment",data=df)
+plt.title("Feature 1 vs Outcome by Segment")
+plt.show()
+# TODO: sns.relplot with col or row
+sns.relplot(x="feature1",y="outcome",row="priority",data=df)
+plt.suptitle("Feature 1 vs Outcome by Priority")
+plt.show()
