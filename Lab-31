@@ -1,0 +1,35 @@
+"""
+Day 31 Activity: Seaborn Visualizations
+Tasks:
+1) Load dataset
+2) Recreate histplot, kdeplot, boxplot, countplot
+"""
+
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# TODO: Load data from data/day31_seaborn.csv
+df = pd.read_csv("python\day31_seaborn.csv")
+
+# TODO: sns.histplot, sns.kdeplot, sns.boxplot, sns.countplot
+
+#Histplot
+sns.histplot(x="income",hue="segment", data=df)
+plt.title("Income by Segment")
+plt.show()
+
+#KDEplot
+sns.kdeplot(x="age", hue="segment",fill=True, data=df)
+plt.title("Age by Segment")
+plt.show()
+
+#Boxplot
+sns.boxplot(x="segment", y="income", data=df)
+plt.title("Income by Segment")
+plt.show()
+
+#Countplot
+sns.countplot(x="segment", data=df)
+plt.title("Segment Count")
+plt.show()
